@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { LinearGradient } from "expo-linear-gradient"; // Add this import
+
 import {
   View,
   Text,
@@ -128,14 +130,14 @@ const LibraryScreen: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#f0f8f5", // Light garden-themed color
+    backgroundColor: "#5eaf64", 
     paddingHorizontal: 20,
     paddingTop: 30,
   },
   title: {
     fontSize: 26,
     fontWeight: "bold",
-    color: "#228B22", // Garden green
+    color: "#020602", // Garden green
     marginBottom: 20,
     textAlign: "center",
   },
@@ -143,7 +145,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
   },
   card: {
-    backgroundColor: "#fff",
+    backgroundColor: "#000000b2",
     borderRadius: 12,
     marginBottom: 20,
     overflow: "hidden",
@@ -167,21 +169,21 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#228B22",
+    color: "#86dc61",
   },
   description: {
     fontSize: 14,
-    color: "#555",
+    color: "#ffffff",
   },
   modalContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(0, 0, 0, 0.5)",
+    backgroundColor: "rgba(88, 210, 172, 0.5)",
   },
   modalContent: {
     width: "90%",
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "#000000ff",
     borderRadius: 10,
     padding: 20,
     alignItems: "center",
@@ -200,18 +202,18 @@ const styles = StyleSheet.create({
   },
   modalDescription: {
     fontSize: 16,
-    color: "#555",
+    color: "#ddd2d2",
     marginBottom: 20,
     textAlign: "center",
   },
   closeButton: {
-    backgroundColor: "#228B22",
+    backgroundColor: "#46a949",
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
   closeText: {
-    color: "#fff",
+    color: "#ffffff",
     fontSize: 16,
   },
 });

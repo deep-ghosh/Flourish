@@ -7,6 +7,7 @@ import {
   Text,
   Modal,
   TextInput,
+  ImageBackground, // Added for background image
 } from "react-native";
 
 // Sample data for the tasks
@@ -70,82 +71,96 @@ const Task: React.FC = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.header}>My Tasks</Text>
-      <TouchableOpacity
-        style={styles.addButton}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.addButtonText}>Add New Task</Text>
-      </TouchableOpacity>
-      <FlatList
-        data={tasks}
-        renderItem={renderTaskItem}
-        keyExtractor={(item) => item.id}
-      />
+    <ImageBackground
+      source={{
+        uri: "https://i.pinimg.com/736x/40/7d/b4/407db4e050333957309cf613c101d1a2.jpg",
+      }}
+      style={styles.backgroundImage}
+    >
+      <View style={styles.container}>
+        <Text style={styles.header}>My Tasks</Text>
+        <TouchableOpacity
+          style={styles.addButton}
+          onPress={() => setModalVisible(true)}
+        >
+          <Text style={styles.addButtonText}>Add New Task</Text>
+        </TouchableOpacity>
+        <FlatList
+          data={tasks}
+          renderItem={renderTaskItem}
+          keyExtractor={(item) => item.id}
+        />
 
-      {/* Modal for adding a new task */}
-      <Modal visible={modalVisible} animationType="slide">
-        <View style={styles.modalContainer}>
-          <Text style={styles.modalHeader}>Add New Task</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Task Title"
-            value={newTaskTitle}
-            onChangeText={setNewTaskTitle}
-          />
-          <TouchableOpacity style={styles.modalButton} onPress={addNewTask}>
-            <Text style={styles.modalButtonText}>Save Task</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.closeButton}
-            onPress={() => setModalVisible(false)}
-          >
-            <Text style={styles.closeButtonText}>Close</Text>
-          </TouchableOpacity>
-        </View>
-      </Modal>
-    </View>
+        {/* Modal for adding a new task */}
+        <Modal visible={modalVisible} animationType="slide">
+          <View style={styles.modalContainer}>
+            <Text style={styles.modalHeader}>Add New Task</Text>
+            <TextInput
+              style={styles.input}
+              placeholder="Task Title"
+              value={newTaskTitle}
+              onChangeText={setNewTaskTitle}
+            />
+            <TouchableOpacity style={styles.modalButton} onPress={addNewTask}>
+              <Text style={styles.modalButtonText}>Save Task</Text>
+            </TouchableOpacity>
+            <TouchableOpacity
+              style={styles.closeButton}
+              onPress={() => setModalVisible(false)}
+            >
+              <Text style={styles.closeButtonText}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </Modal>
+      </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
+  backgroundImage: {
+    flex: 1,
+    resizeMode: "cover",
+  },
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: "#f9f9f9",
+    // Removed the backgroundColor to make the background image fully visible
   },
   header: {
     fontSize: 32,
     fontWeight: "bold",
     marginBottom: 20,
-    color: "#4caf50",
+    color: "#47be3d", // White color for readability against the background
     textAlign: "center",
     paddingVertical: 10,
-    borderBottomWidth: 2,
-    borderBottomColor: "#4caf50",
+    
+    
   },
   addButton: {
     backgroundColor: "#4caf50",
-    padding: 15,
-    borderRadius: 8,
+    padding: 18,
+    borderRadius: 12,
     marginBottom: 15,
+    alignItems: "center",
   },
   addButtonText: {
     color: "#ffffff",
     textAlign: "center",
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: "bold",
   },
   taskContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 15,
     marginVertical: 8,
-    backgroundColor: "#f8f8f8",
+    backgroundColor: "rgba(0, 0, 0, 0.6)", // Slightly transparent background for task items
     borderRadius: 8,
   },
   taskText: {
     fontSize: 16,
+    color: "#ffffff", // White text for task items
   },
   completedTask: {
     textDecorationLine: "line-through",
@@ -153,7 +168,7 @@ const styles = StyleSheet.create({
   },
   checkmark: {
     color: "green",
-    fontSize: 18,
+    fontSize: 20,
   },
   modalContainer: {
     flex: 1,

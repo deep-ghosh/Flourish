@@ -20,6 +20,7 @@ import ShopScreen from "./shop";
 import ProfileScreen from "./profile";
 import { useNavigation } from "@react-navigation/native";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { Video } from "expo-av";
 
 const Drawer = createDrawerNavigator();
 const API_KEY = "AIzaSyCgAo3UztuXJI1GaoJzbMMn_-y0k9E-sQg";
@@ -116,7 +117,6 @@ const HomeScreen: React.FC = () => {
                 </TouchableOpacity>
               )}
               keyExtractor={(item) => item.id}
-              // Added these props to improve scroll behavior
               contentContainerStyle={{ paddingBottom: 20 }}
               ListFooterComponent={<View style={{ height: 20 }} />}
             />
@@ -125,6 +125,20 @@ const HomeScreen: React.FC = () => {
           )}
         </View>
       )}
+      {/* Video Section */}
+      <View style={styles.videoContainer}>
+        <Video
+          source={require("../assets/hv.mp4")} // Video path relative to the project
+          rate={1.0}
+          volume={1.0}
+          isMuted={false}
+          resizeMode="cover" // Correctly set the resizeMode here
+          shouldPlay
+          isLooping
+          useNativeControls={true} // Adds play/pause controls
+          style={styles.video}
+        />
+      </View>
     </ScrollView>
   );
 };
@@ -142,7 +156,7 @@ const DrawerNavigator: React.FC = () => {
           width: 240,
         },
         headerStyle: {
-          backgroundColor: "rgba(76, 175, 80, 0.95)",
+          backgroundColor: "rgba(12, 102, 23, 0.95)",
           elevation: 0,
         },
         headerTintColor: "#fff",
@@ -273,6 +287,16 @@ const styles = StyleSheet.create({
   },
   resultsList: {
     marginBottom: 20,
+  },
+  videoContainer: {
+    marginTop: 40,
+    width: "100%",
+    height: 300,
+    backgroundColor: "#000",
+  },
+  video: {
+    width: "100%",
+    height: "100%",
   },
 });
 
