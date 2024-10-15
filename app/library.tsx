@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   Modal,
   ScrollView,
+  ImageBackground,
 } from "react-native";
 
 const plants = [
@@ -87,50 +88,57 @@ const LibraryScreen: React.FC = () => {
   );
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Garden Library</Text>
-      <FlatList
-        data={plants}
-        renderItem={renderPlant}
-        keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.list}
-      />
-      {selectedPlant && (
-        <Modal
-          visible={!!selectedPlant}
-          transparent={true}
-          onRequestClose={() => setSelectedPlant(null)}
-        >
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
-              <ScrollView>
-                <Image
-                  source={{ uri: selectedPlant.image }}
-                  style={styles.modalImage}
-                />
-                <Text style={styles.modalName}>{selectedPlant.name}</Text>
-                <Text style={styles.modalDescription}>
-                  {selectedPlant.fullDetails}
-                </Text>
-                <TouchableOpacity
-                  onPress={() => setSelectedPlant(null)}
-                  style={styles.closeButton}
-                >
-                  <Text style={styles.closeText}>Close</Text>
-                </TouchableOpacity>
-              </ScrollView>
-            </View>
+   
+  <ImageBackground
+    source={{
+      uri: "https://i.pinimg.com/736x/1d/76/64/1d76640d4d13241b5051bce1bf0de1c3.jpg",
+    }}
+    style={styles.container}
+  >
+    <Text style={styles.title}>Garden Library</Text>
+    <FlatList
+      data={plants}
+      renderItem={renderPlant}
+      keyExtractor={(item) => item.id}
+      contentContainerStyle={styles.list}
+    />
+    {selectedPlant && (
+      <Modal
+        visible={!!selectedPlant}
+        transparent={true}
+        onRequestClose={() => setSelectedPlant(null)}
+      >
+        <View style={styles.modalContainer}>
+          <View style={styles.modalContent}>
+            <ScrollView>
+              <Image
+                source={{ uri: selectedPlant.image }}
+                style={styles.modalImage}
+              />
+              <Text style={styles.modalName}>{selectedPlant.name}</Text>
+              <Text style={styles.modalDescription}>
+                {selectedPlant.fullDetails}
+              </Text>
+              <TouchableOpacity
+                onPress={() => setSelectedPlant(null)}
+                style={styles.closeButton}
+              >
+                <Text style={styles.closeText}>Close</Text>
+              </TouchableOpacity>
+            </ScrollView>
           </View>
-        </Modal>
-      )}
-    </View>
+        </View>
+      </Modal>
+    )}
+  </ImageBackground>
+
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#5eaf64", 
+    backgroundColor: "#5eaf64",
     paddingHorizontal: 20,
     paddingTop: 30,
   },
@@ -160,7 +168,6 @@ const styles = StyleSheet.create({
   image: {
     width: 100,
     height: 100,
-    borderRadius: 10,
     marginRight: 10,
   },
   info: {
@@ -169,36 +176,37 @@ const styles = StyleSheet.create({
   name: {
     fontSize: 18,
     fontWeight: "bold",
-    color: "#86dc61",
+    color: "#acec91ff",
   },
   description: {
     fontSize: 14,
-    color: "#ffffff",
+    color: "#fffefe",
   },
   modalContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(88, 210, 172, 0.5)",
+    backgroundColor: "rgba(0, 0, 0, 0.614)",
   },
   modalContent: {
     width: "90%",
-    backgroundColor: "#000000ff",
+    backgroundColor: "#000000d3",
     borderRadius: 10,
     padding: 20,
     alignItems: "center",
   },
   modalImage: {
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300,
     borderRadius: 10,
     marginBottom: 15,
   },
   modalName: {
     fontSize: 24,
     fontWeight: "bold",
-    color: "#228B22",
+    color: "#228b22",
     marginBottom: 10,
+    textAlign: "center",
   },
   modalDescription: {
     fontSize: 16,
@@ -207,10 +215,10 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   closeButton: {
-    backgroundColor: "#46a949",
+    backgroundColor: "#ff4d4d",
     borderRadius: 5,
     paddingVertical: 10,
-    paddingHorizontal: 20,
+    paddingHorizontal: 120,
   },
   closeText: {
     color: "#ffffff",

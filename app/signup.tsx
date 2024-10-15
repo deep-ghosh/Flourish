@@ -165,33 +165,37 @@ const styles = StyleSheet.create({
     color: "#ffffff", // White title for visibility on the background
   },
   input: {
-    width: "100%",
-    height: 65, // Slightly increased height for better touch targets
-    borderColor: "#f0f0f0",
-    borderWidth: 1,
-    borderRadius: 16,
-    marginBottom: 30,
-    paddingHorizontal: 15, // Increased padding for better spacing inside the input
-    backgroundColor: "rgba(255, 255, 255, 1)",
-    fontSize: 18, // Increased font size for better readability
-    color: "#333", // Darker text color for better contrast
+    width: "150%", // Extended width for an extra-long input box
+    height: 60, // Keep the height consistent
+    borderColor: "#ddd", // Light gray border for a clean look
+    borderWidth: 1.5, // Thin border for modern design
+    borderRadius: 10, // Slightly rounded corners for a sleek look
+    marginBottom: 20, // Spacing below the input
+    paddingHorizontal: 70, // Spacious padding inside the box
+    backgroundColor: "#f9f9f9", // Light background for readability
+    fontSize: 20, // Comfortable font size for reading
+    color: "#333", // Dark text for contrast
+    shadowColor: "#000", // Subtle shadow for depth
+    shadowOffset: { width: 0, height: 3}, // Floating effect with shadow
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 4, // Depth for Android devices
+    alignSelf: "flex-start", // Prevent horizontal centering
   },
-
   errorText: {
     color: "red",
   },
   button: {
-    width: "90%", // Increased width for better accessibility
-    height: 65, // Slightly increased height for a bigger touch target
+    width: "80%", // Increased width for better accessibility
+    height: 58, // Slightly increased height for a bigger touch target
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 18, // Slightly larger radius for a softer look
-    marginBottom: 30,
+    borderRadius: 16, // Slightly larger radius for a softer look
+    marginBottom: 25,
     backgroundColor: "#28a745",
-    paddingVertical: 15, // Add padding for a comfortable feel
-    paddingHorizontal: 25,
+    paddingVertical: 10, // Add padding for a comfortable feel
+    paddingHorizontal: 20,
   },
-
   buttonText: {
     color: "#ffff",
     fontSize: 18,
@@ -215,5 +219,4 @@ const styles = StyleSheet.create({
     color: "#4CAF50",
   },
 });
-
 export default SignUpPage;

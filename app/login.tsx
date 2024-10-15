@@ -193,37 +193,57 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 35,
     marginBottom: 20,
-    color: "#ffffff", // Change title color for better visibility
+    color: "#e1e0e0", // Change title color for better visibility
   },
   input: {
-    width: "100%",
-    height: 20,
-    borderColor: "#f0f0f0",
-    borderWidth: 25,
-    borderRadius: 12,
-    marginBottom: 30,
-    paddingHorizontal: 10,
-    backgroundColor: "rgba(255, 255, 255, 0.2)", // Semi-transparent input background
+    width: "120%", 
+    height: 60, 
+    borderColor: "#ddd", 
+    borderWidth: 1.5, 
+    borderRadius: 10, 
+    marginBottom: 20, 
+    paddingHorizontal: 80, 
+    backgroundColor: "#f9f9f9",
+    fontSize: 16,
+    color: "#333", 
+    shadowColor: "#000", 
+    shadowOffset: { width: 0, height: 3 }, 
+    shadowOpacity: 0.1,
+    shadowRadius: 6,
+    elevation: 4, 
   },
+
+
   errorText: {
     color: "red",
+    fontSize: 14, // Adjusted font size
+    marginTop: -15, // Align error message closer to input
+    marginBottom: 10,
   },
+
   button: {
-    width: "90%", // Increased width for better accessibility
-    height: 55, // Slightly increased height for a bigger touch target
+    width: "65%", // Matches input width for consistency
+    height: 60, // Increased for a bigger touch target
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: 18, // Slightly larger radius for a softer look
-    marginBottom: 30,
-    backgroundColor: "#28a745",
-    paddingVertical: 15, // Add padding for a comfortable feel
+    borderRadius: 16, // Larger radius for modern look
+    marginBottom: 20,
+    backgroundColor: "#218838", // Darker green for a strong CTA
+    paddingVertical: 15,
     paddingHorizontal: 25,
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
+    elevation: 5, // Enhance shadow for depth
   },
 
   buttonText: {
-    color: "#ffff",
-    fontSize: 18,
+    color: "#fff",
+    fontSize: 18, // Larger text for better readability
+    fontWeight: "bold",
   },
+
   forgotPasswordText: {
     color: "#3ecb25",
     marginBottom: 20,

@@ -275,13 +275,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   itemImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 10,
+    width: 200,
+    height: 200,
+    borderRadius: 12,
   },
   itemText: {
     marginTop: 10,
-    fontSize: 16,
+    fontSize: 20,
     fontWeight: "bold",
     color: "#47a816", // Ensures the text is visible on the background
   },

@@ -13,19 +13,19 @@ const Loading: React.FC = () => {
         }}
         style={styles.backgroundImage}
       />
-      <Text style={styles.titleText}>Welcome to Flourish</Text>
+      <Text style={styles.titleText}>Welcome to Flourish 🍁</Text>
       <View style={styles.buttonContainerStyle}>
         <TouchableOpacity
           style={styles.loginButtonStyle}
           onPress={() => router.push("/home")}
         >
-          <Text style={styles.buttonText}>👉 Login</Text>
+          <Text style={styles.buttonText}>Login ↩</Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.signupButtonStyle}
           onPress={() => router.push("/signup")}
         >
-          <Text style={styles.buttonText}>Signup 👈</Text>
+          <Text style={styles.buttonText}> ↪ Signup </Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -62,7 +62,7 @@ const styles = StyleSheet.create({
     width: "80%", // Limit width for better spacing
   },
   buttonText: {
-    color: "#fff", // Text color for buttons
+    color: "#ffffff", // Text color for buttons
     fontSize: 18,
     textAlign: "center",
   },

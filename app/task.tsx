@@ -32,7 +32,7 @@ const Task: React.FC = () => {
           if (!task.completed) {
             setTimeout(() => {
               setTasks((prev) => prev.filter((t) => t.id !== id));
-            }, 2000); // Remove after 2 seconds
+            }, 3000); // Remove after 2 seconds
           }
           return { ...task, completed: !task.completed };
         }
@@ -92,25 +92,32 @@ const Task: React.FC = () => {
         />
 
         {/* Modal for adding a new task */}
-        <Modal visible={modalVisible} animationType="slide">
-          <View style={styles.modalContainer}>
-            <Text style={styles.modalHeader}>Add New Task</Text>
-            <TextInput
-              style={styles.input}
-              placeholder="Task Title"
-              value={newTaskTitle}
-              onChangeText={setNewTaskTitle}
-            />
-            <TouchableOpacity style={styles.modalButton} onPress={addNewTask}>
-              <Text style={styles.modalButtonText}>Save Task</Text>
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.closeButton}
-              onPress={() => setModalVisible(false)}
-            >
-              <Text style={styles.closeButtonText}>Close</Text>
-            </TouchableOpacity>
-          </View>
+        <Modal visible={modalVisible} animationType="slide" transparent={true}>
+          <ImageBackground
+            source={{
+              uri: "https://i.pinimg.com/736x/40/7d/b4/407db4e050333957309cf613c101d1a2.jpg",
+            }}
+            style={styles.modalBackgroundImage} // Add a separate style for the modal background
+          >
+            <View style={styles.modalContainer}>
+              <Text style={styles.modalHeader}>Add New Task</Text>
+              <TextInput
+                style={styles.input}
+                placeholder="Task Title"
+                value={newTaskTitle}
+                onChangeText={setNewTaskTitle}
+              />
+              <TouchableOpacity style={styles.modalButton} onPress={addNewTask}>
+                <Text style={styles.modalButtonText}>Save Task</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.closeButton}
+                onPress={() => setModalVisible(false)}
+              >
+                <Text style={styles.closeButtonText}>Close</Text>
+              </TouchableOpacity>
+            </View>
+          </ImageBackground>
         </Modal>
       </View>
     </ImageBackground>
@@ -122,20 +129,23 @@ const styles = StyleSheet.create({
     flex: 1,
     resizeMode: "cover",
   },
+  modalBackgroundImage: {
+    flex: 1, // Ensure the background takes up the full modal space
+    justifyContent: "center", // Center the modal content
+    alignItems: "center", // Center the modal content
+  },
   container: {
     flex: 1,
-    padding: 20,
-    // Removed the backgroundColor to make the background image fully visible
+    justifyContent: "center",
+    alignItems: "center",
   },
   header: {
     fontSize: 32,
     fontWeight: "bold",
     marginBottom: 20,
-    color: "#47be3d", // White color for readability against the background
+    color: "#367930", // White color for readability against the background
     textAlign: "center",
     paddingVertical: 10,
-    
-    
   },
   addButton: {
     backgroundColor: "#4caf50",
@@ -155,7 +165,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     padding: 15,
     marginVertical: 8,
-    backgroundColor: "rgba(0, 0, 0, 0.6)", // Slightly transparent background for task items
+    backgroundColor: "rgba(92, 89, 89, 0.607)", // Slightly transparent background for task items
     borderRadius: 8,
   },
   taskText: {
@@ -164,17 +174,23 @@ const styles = StyleSheet.create({
   },
   completedTask: {
     textDecorationLine: "line-through",
-    color: "gray",
+    color: "#ffffff75",
   },
   checkmark: {
-    color: "green",
+    color: "#7ceb81",
     fontSize: 20,
   },
   modalContainer: {
-    flex: 1,
-    justifyContent: "center",
+    width: "90%",
     padding: 20,
-    backgroundColor: "#f9f9f9",
+    backgroundColor: "rgba(255, 255, 255, 0.9)", // Transparent white to blend with background
+    borderRadius: 20,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 3 },
+    shadowOpacity: 0.3,
+    shadowRadius: 10,
+    elevation: 5,
   },
   modalHeader: {
     fontSize: 24,
@@ -183,18 +199,23 @@ const styles = StyleSheet.create({
     color: "#4caf50",
   },
   input: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    padding: 15,
+    width: "100%",
+    height: 50,
+    borderColor: "#ddd",
+    borderWidth: 1.5,
+    borderRadius: 10,
     marginBottom: 20,
-    borderRadius: 8,
-    backgroundColor: "#ffffff",
+    paddingHorizontal: 20,
+    backgroundColor: "#fff",
+    fontSize: 16,
   },
   modalButton: {
-    backgroundColor: "#4caf50",
+    backgroundColor: "#28a745",
     padding: 15,
-    borderRadius: 8,
+    borderRadius: 10,
     marginBottom: 10,
+    width: "100%",
+    alignItems: "center",
   },
   modalButtonText: {
     color: "#ffffff",

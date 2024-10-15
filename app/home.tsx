@@ -69,6 +69,15 @@ const HomeScreen: React.FC = () => {
     }
   };
 
+  const handleRefresh = () => {
+    // Clear the search results and reset the loading state
+    setSearchResults([]);
+    // Optionally, you can call handleSearch() again if needed
+    if (searchQuery) {
+      handleSearch();
+    }
+  };
+
   const handleLinkPress = (url: string) => {
     if (url) {
       Linking.openURL(url).catch((err) => {
@@ -92,7 +101,12 @@ const HomeScreen: React.FC = () => {
         <ActivityIndicator size="large" color="#4caf50" />
       ) : (
         <View style={styles.resultsList}>
-          <Text style={styles.sectionTitle}>Search Results</Text>
+          <View style={styles.resultsHeader}>
+            <Text style={styles.sectionTitle}>Search Results</Text>
+            <TouchableOpacity onPress={handleRefresh}>
+              <FontAwesome name="refresh" size={24} color="#4caf50" />
+            </TouchableOpacity>
+          </View>
           {searchResults.length > 0 ? (
             <FlatList
               data={searchResults}
@@ -130,7 +144,7 @@ const HomeScreen: React.FC = () => {
         <Video
           source={require("../assets/hv.mp4")} // Video path relative to the project
           rate={1.0}
-          volume={1.0}
+          volume={0}
           isMuted={false}
           resizeMode="cover" // Correctly set the resizeMode here
           shouldPlay
@@ -232,7 +246,7 @@ const DrawerNavigator: React.FC = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#E0E0E0",
+    backgroundColor: "#c1cbbe",
     padding: 16,
   },
   welcomeText: {
@@ -254,6 +268,11 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: "bold",
     marginVertical: 10,
+  },
+  resultsHeader: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   plantCard: {
     backgroundColor: "#fff",
