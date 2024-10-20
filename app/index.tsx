@@ -9,7 +9,7 @@ const Loading: React.FC = () => {
     <View style={styles.pageStyle}>
       <Image
         source={{
-          uri: "https://i.pinimg.com/736x/ed/85/38/ed8538b3a2c509364e2e7e5b84962e1c.jpg",
+          uri: "https://i.pinimg.com/736x/31/1f/26/311f26617cf8a43998442e309f3dcf94.jpg",
         }}
         style={styles.backgroundImage}
       />
@@ -17,7 +17,7 @@ const Loading: React.FC = () => {
       <View style={styles.buttonContainerStyle}>
         <TouchableOpacity
           style={styles.loginButtonStyle}
-          onPress={() => router.push("/home")}
+          onPress={() => router.push("/login")}
         >
           <Text style={styles.buttonText}>Login ↩</Text>
         </TouchableOpacity>

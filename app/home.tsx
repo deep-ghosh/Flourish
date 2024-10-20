@@ -1,15 +1,16 @@
+
 import React, { useState } from "react";
 import {
   View,
   StyleSheet,
   Text,
   TextInput,
-  FlatList,
   TouchableOpacity,
   Image,
   Alert,
   ActivityIndicator,
   Linking,
+  FlatList,
   ScrollView,
 } from "react-native";
 import { createDrawerNavigator } from "@react-navigation/drawer";
@@ -70,9 +71,7 @@ const HomeScreen: React.FC = () => {
   };
 
   const handleRefresh = () => {
-    // Clear the search results and reset the loading state
     setSearchResults([]);
-    // Optionally, you can call handleSearch() again if needed
     if (searchQuery) {
       handleSearch();
     }
@@ -88,72 +87,78 @@ const HomeScreen: React.FC = () => {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <Text style={styles.welcomeText}>Home</Text>
-      <TextInput
-        style={styles.searchBar}
-        placeholder="Search for plants..."
-        value={searchQuery}
-        onChangeText={setSearchQuery}
-        onSubmitEditing={handleSearch}
+    <View style={styles.pageStyle}>
+      <Image
+        source={{
+          uri: "https://i.pinimg.com/736x/11/62/6d/11626dbdb2ebe5b92f2d201bd28ccf21.jpg",
+        }}
+        style={styles.backgroundImage}
       />
-      {loading ? (
-        <ActivityIndicator size="large" color="#4caf50" />
-      ) : (
-        <View style={styles.resultsList}>
-          <View style={styles.resultsHeader}>
-            <Text style={styles.sectionTitle}>Search Results</Text>
-            <TouchableOpacity onPress={handleRefresh}>
-              <FontAwesome name="refresh" size={24} color="#4caf50" />
-            </TouchableOpacity>
-          </View>
-          {searchResults.length > 0 ? (
-            <FlatList
-              data={searchResults}
-              renderItem={({ item }) => (
-                <TouchableOpacity
-                  onPress={() => handleLinkPress(item.link)}
-                  disabled={!item.link}
-                  style={[
-                    styles.plantCard,
-                    !item.link && { backgroundColor: "#f0f0f0" },
-                  ]}
-                >
-                  <Text style={styles.plantName}>{item.name}</Text>
-                  <Text style={styles.plantDescription}>
-                    {item.description}
-                  </Text>
-                  {item.link && (
-                    <Text style={styles.plantLink}>
-                      {item.link ? "Learn more" : ""}
-                    </Text>
-                  )}
-                </TouchableOpacity>
-              )}
-              keyExtractor={(item) => item.id}
-              contentContainerStyle={{ paddingBottom: 20 }}
-              ListFooterComponent={<View style={{ height: 20 }} />}
-            />
-          ) : (
-            <Text style={styles.noResultsText}>Try to search.</Text>
-          )}
-        </View>
-      )}
-      {/* Video Section */}
-      <View style={styles.videoContainer}>
-        <Video
-          source={require("../assets/hv.mp4")} // Video path relative to the project
-          rate={1.0}
-          volume={0}
-          isMuted={false}
-          resizeMode="cover" // Correctly set the resizeMode here
-          shouldPlay
-          isLooping
-          useNativeControls={true} // Adds play/pause controls
-          style={styles.video}
+      <ScrollView style={styles.container}>
+        <Text style={styles.welcomeText}></Text>
+        <TextInput
+          style={styles.searchBar}
+          placeholder="Search for plants..."
+          value={searchQuery}
+          onChangeText={setSearchQuery}
+          onSubmitEditing={handleSearch}
         />
-      </View>
-    </ScrollView>
+        {loading ? (
+          <ActivityIndicator size="large" color="#4caf50" />
+        ) : (
+          <View style={styles.resultsList}>
+            <View style={styles.resultsHeader}>
+              <Text style={styles.sectionTitle}>Search Results</Text>
+              <TouchableOpacity onPress={handleRefresh}>
+                <FontAwesome name="refresh" size={24} color="#4caf50" />
+              </TouchableOpacity>
+            </View>
+            {searchResults.length > 0 ? (
+              <FlatList
+                data={searchResults}
+                renderItem={({ item }) => (
+                  <TouchableOpacity
+                    onPress={() => handleLinkPress(item.link)}
+                    disabled={!item.link}
+                    style={[
+                      styles.plantCard,
+                      !item.link && { backgroundColor: "#f0f0f0" },
+                    ]}
+                  >
+                    <Text style={styles.plantName}>{item.name}</Text>
+                    <Text style={styles.plantDescription}>
+                      {item.description}
+                    </Text>
+                    {item.link && (
+                      <Text style={styles.plantLink}>
+                        {item.link ? "Learn more" : ""}
+                      </Text>
+                    )}
+                  </TouchableOpacity>
+                )}
+                keyExtractor={(item) => item.id}
+                contentContainerStyle={{ paddingBottom: 20 }}
+              />
+            ) : (
+              <Text style={styles.noResultsText}>Try to search.</Text>
+            )}
+          </View>
+        )}
+        <View style={styles.videoContainer}>
+          <Video
+            source={require("../assets/hv.mp4")}
+            rate={1.0}
+            volume={0}
+            isMuted={false}
+            resizeMode="cover"
+            shouldPlay
+            isLooping
+            useNativeControls={true}
+            style={styles.video}
+          />
+        </View>
+      </ScrollView>
+    </View>
   );
 };
 
@@ -244,15 +249,27 @@ const DrawerNavigator: React.FC = () => {
 };
 
 const styles = StyleSheet.create({
+  pageStyle: {
+    flex: 1,
+  },
+  backgroundImage: {
+    position: "absolute",
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    width: "100%",
+    height: "100%",
+    zIndex: -1,
+  },
   container: {
     flex: 1,
-    backgroundColor: "#c1cbbe",
     padding: 16,
   },
   welcomeText: {
     fontSize: 28,
     fontWeight: "bold",
-    color: "#333",
+    color: "#e9ef4af3",
     marginBottom: 10,
   },
   searchBar: {
@@ -288,34 +305,29 @@ const styles = StyleSheet.create({
   plantName: {
     fontSize: 18,
     fontWeight: "bold",
-    marginVertical: 5,
+    marginBottom: 4,
   },
   plantDescription: {
     fontSize: 14,
-    color: "#666",
+    color: "#555",
+    marginBottom: 8,
   },
   plantLink: {
     fontSize: 14,
-    color: "#1E90FF",
+    color: "#4caf50",
     textDecorationLine: "underline",
   },
   noResultsText: {
-    textAlign: "center",
     fontSize: 16,
-    color: "#666",
-  },
-  resultsList: {
-    marginBottom: 20,
+    textAlign: "center",
+    marginVertical: 10,
   },
   videoContainer: {
-    marginTop: 40,
-    width: "100%",
-    height: 300,
-    backgroundColor: "#000",
+    marginTop: 20,
   },
   video: {
     width: "100%",
-    height: "100%",
+    height: 200,
   },
 });
 

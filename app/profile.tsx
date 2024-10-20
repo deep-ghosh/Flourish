@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import {
   View,
@@ -11,6 +10,8 @@ import {
   Alert,
   Modal,
   Button,
+  ImageBackground,
+  ImageSourcePropType,
 } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 import * as ImagePicker from "expo-image-picker";
@@ -22,7 +23,7 @@ interface Post {
   image: string;
   likes: number;
   comments: string[];
-  liked: boolean; // Add liked property to track if post is liked
+  liked: boolean; // Track if post is liked
 }
 
 const ProfileScreen: React.FC = () => {
@@ -36,16 +37,44 @@ const ProfileScreen: React.FC = () => {
       id: "1",
       content: "Made a new addition to my garden!",
       image:
-        "https://www.vitri.in/wp-content/uploads/2020/01/Snakeskin-Sansevieria-5-2.jpg",
-      likes: 0,
+        "https://i.pinimg.com/736x/02/ff/5d/02ff5da1d558cf884aad7f63870b8422.jpg",
+      likes: 2546,
       comments: [],
       liked: false, // Initialize liked as false
     },
     {
       id: "2",
-      content: "Money Plants are best for interior decors...",
-      image: "https://files.nccih.nih.gov/aloe-vera-steven-foster-square.jpg",
-      likes: 0,
+      content: "Love how my study looks right now !",
+      image:
+        "https://i.pinimg.com/736x/33/ad/07/33ad07e0a4578cbb2889e1f1fb24b812.jpg",
+      likes: 1532,
+      comments: [],
+      liked: false, // Initialize liked as false
+    },
+    {
+      id: "3",
+      content: "It's a garden inside a garden!🍄🍂",
+      image:
+        "https://i.pinimg.com/736x/6b/0b/88/6b0b88bdde01290ff533c037d21560ec.jpg",
+      likes: 521,
+      comments: [],
+      liked: false, // Initialize liked as false
+    },
+    {
+      id: "4",
+      content: "Peace Lilies are best for interior decors...",
+      image:
+        "https://i.pinimg.com/736x/45/52/1e/45521eba451ded89f7ddf94470ef4122.jpg",
+      likes: 454,
+      comments: [],
+      liked: false, // Initialize liked as false
+    },
+    {
+      id: "5",
+      content: "Bonsai plants heal hearts❤",
+      image:
+        "https://i.pinimg.com/736x/4d/00/e7/4d00e763992ade1b6e85d3fa1257df25.jpg",
+      likes: 2314,
       comments: [],
       liked: false, // Initialize liked as false
     },
@@ -198,7 +227,12 @@ const ProfileScreen: React.FC = () => {
   };
 
   return (
-    <View style={styles.profileContainer}>
+    <ImageBackground
+      source={{
+        uri: "https://i.pinimg.com/736x/90/4a/f8/904af8185a39a2569a546017d73ab2f4.jpg",
+      }}
+      style={styles.profileContainer}
+    >
       <View style={styles.headerContainer}>
         <TouchableOpacity onPress={changeProfilePicture}>
           <Image source={{ uri: profileImage }} style={styles.profileImage} />
@@ -245,174 +279,168 @@ const ProfileScreen: React.FC = () => {
           <Text style={styles.statLabel}>Posts</Text>
         </View>
         <View style={styles.statBox}>
-          <Text style={styles.statNumber}>100</Text>
-          <Text style={styles.statLabel}>Achievements</Text>
+          <Text style={styles.statNumber}>2k</Text>
+          <Text style={styles.statLabel}>Followers</Text>
+        </View>
+        <View style={styles.statBox}>
+          <Text style={styles.statNumber}>345</Text>
+          <Text style={styles.statLabel}>Following</Text>
         </View>
       </View>
 
-      <Text style={styles.sectionTitle}>Posts</Text>
       <FlatList
         data={posts}
-        renderItem={renderPost}
         keyExtractor={(item) => item.id}
-        contentContainerStyle={styles.postsList}
+        renderItem={renderPost}
+        contentContainerStyle={styles.postsContainer}
       />
 
-      {/* Modal for Adding a New Post */}
-      <Modal
-        animationType="slide"
-        transparent={false}
-        visible={modalVisible}
-        onRequestClose={() => setModalVisible(false)}
-      >
+      <Modal visible={modalVisible} animationType="slide">
         <View style={styles.modalContainer}>
-          <Text style={styles.modalTitle}>Create New Post</Text>
+          <Text style={styles.modalTitle}>Add a New Post</Text>
           <TextInput
-            style={styles.newPostInput}
-            placeholder="What's on your mind?"
+            style={styles.postInput}
+            placeholder="Write something..."
             value={newPostContent}
             onChangeText={setNewPostContent}
           />
-          <TouchableOpacity style={styles.imageButton} onPress={pickImage}>
-            <Text style={styles.imageButtonText}>
-              {newPostImage ? "Change Image" : "Select Image"}
-            </Text>
+          <TouchableOpacity style={styles.pickImageButton} onPress={pickImage}>
+            <Text style={styles.pickImageText}>Pick an Image</Text>
           </TouchableOpacity>
-          {newPostImage ? (
-            <Image
-              source={{ uri: newPostImage }}
-              style={styles.postImagePreview}
-            />
-          ) : null}
-          <Button title="Submit" onPress={handleAddPost} />
-          <Button title="Cancel" onPress={() => setModalVisible(false)} />
+          <Button title="Post" onPress={handleAddPost} />
+          <Button
+            title="Cancel"
+            color="red"
+            onPress={() => setModalVisible(false)}
+          />
         </View>
       </Modal>
-    </View>
+    </ImageBackground>
   );
 };
 
 const styles = StyleSheet.create({
   profileContainer: {
     flex: 1,
-    padding: 16,
-    backgroundColor: "#a6d2a2",
+    justifyContent: "center",
+    alignItems: "center",
+    paddingTop: 50,
+    backgroundColor: "#f5f5f5",
   },
   headerContainer: {
     alignItems: "center",
-    marginBottom: 16,
   },
   profileImage: {
-    width: 100,
-    height: 100,
-    borderRadius: 50,
-    marginBottom: 8,
-  },
-  usernameInput: {
-    borderBottomWidth: 1,
-    width: "100%",
-    textAlign: "center",
+    width: 120,
+    height: 120,
+    borderRadius: 60,
+    borderWidth: 3,
+    borderColor: "#fff",
   },
   profileName: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: "bold",
+    marginTop: 10,
+    color: "#000000",
+  },
+  usernameInput: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "#000000",
+    borderBottomWidth: 1,
+    borderBottomColor: "#ccc",
   },
   actionButtonsContainer: {
     flexDirection: "row",
-    justifyContent: "space-around", // Adjusted to "space-around" for equal spacing
-    width: "100%",
-    marginTop: 8,
+    marginTop: 15,
   },
   editButton: {
+    backgroundColor: "#007bff",
     padding: 10,
-    backgroundColor: "#4CAF50",
     borderRadius: 5,
-    flex: 1,
-    marginRight: 5, // Added margin for spacing
+    marginHorizontal: 5,
   },
   editButtonText: {
     color: "#fff",
-    textAlign: "center",
+    fontWeight: "bold",
   },
   addPostButton: {
+    backgroundColor: "#28a745",
     padding: 10,
-    backgroundColor: "#2196F3",
     borderRadius: 5,
-    flex: 1,
-    marginLeft: 5, // Added margin for spacing
+    marginHorizontal: 5,
   },
   addPostButtonText: {
     color: "#fff",
-    textAlign: "center",
+    fontWeight: "bold",
   },
   statsContainer: {
     flexDirection: "row",
     justifyContent: "space-around",
-    marginVertical: 16,
+    marginTop: 20,
+    width: "100%",
   },
   statBox: {
     alignItems: "center",
   },
   statNumber: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: "bold",
+    color: "#2a2020",
   },
   statLabel: {
     fontSize: 14,
-    color: "#888",
+    color: "#000000",
   },
-  sectionTitle: {
-    fontSize: 18,
-    fontWeight: "bold",
-    marginVertical: 8,
-  },
-  postsList: {
-    paddingBottom: 80,
+  postsContainer: {
+    paddingVertical: 20,
+    paddingHorizontal: 10,
   },
   postContainer: {
-    marginBottom: 16,
-    borderWidth: 1,
-    borderColor: "#ddd",
-    borderRadius: 8,
-    overflow: "hidden",
-    padding: 8,
+    backgroundColor: "#a4c18ed8",
+    borderRadius: 10,
+    padding: 10,
+    marginBottom: 15,
+    shadowColor: "#000",
+    shadowOpacity: 0.1,
+    shadowRadius: 5,
   },
   postImage: {
     width: "100%",
-    height: 150,
-    borderRadius: 8,
+    height: 200,
+    borderRadius: 10,
   },
   postContent: {
-    padding: 8,
+    marginTop: 10,
   },
   postText: {
     fontSize: 16,
-    marginBottom: 8,
+    color: "#333",
   },
   postIcons: {
     flexDirection: "row",
     justifyContent: "space-between",
+    marginTop: 10,
   },
   iconText: {
-    flexDirection: "row",
-    alignItems: "center",
+    fontSize: 16,
+    color: "#333",
   },
   commentSection: {
-    marginTop: 8,
-    borderTopWidth: 1,
-    borderColor: "#ddd",
-    paddingTop: 8,
+    marginTop: 10,
   },
   commentInput: {
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#000000",
     borderRadius: 5,
     padding: 8,
-    marginBottom: 8,
+    marginTop: 10,
+    marginBottom: 5,
   },
   commentText: {
     fontSize: 14,
-    color: "#555",
+    marginTop: 5,
+    color: "#000000",
   },
   modalContainer: {
     flex: 1,
@@ -421,30 +449,28 @@ const styles = StyleSheet.create({
   },
   modalTitle: {
     fontSize: 24,
-    marginBottom: 16,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginBottom: 20,
   },
-  newPostInput: {
+  postInput: {
+    height: 100,
     borderWidth: 1,
     borderColor: "#ccc",
     borderRadius: 5,
-    padding: 8,
-    marginBottom: 16,
-  },
-  imageButton: {
     padding: 10,
-    backgroundColor: "#2196F3",
+    marginBottom: 20,
+  },
+  pickImageButton: {
+    backgroundColor: "#007bff",
+    padding: 10,
     borderRadius: 5,
-    marginBottom: 16,
+    alignItems: "center",
+    marginBottom: 20,
   },
-  imageButtonText: {
+  pickImageText: {
     color: "#fff",
-    textAlign: "center",
-  },
-  postImagePreview: {
-    width: "100%",
-    height: 150,
-    borderRadius: 8,
-    marginBottom: 16,
+    fontWeight: "bold",
   },
 });
 
