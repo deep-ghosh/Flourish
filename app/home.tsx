@@ -23,6 +23,7 @@ import { useNavigation } from "@react-navigation/native";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import { Video } from "expo-av";
 
+
 const Drawer = createDrawerNavigator();
 const API_KEY = "AIzaSyCgAo3UztuXJI1GaoJzbMMn_-y0k9E-sQg";
 const genAI = new GoogleGenerativeAI(API_KEY);
